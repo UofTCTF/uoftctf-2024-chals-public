@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="form-container">
+  <h1 class="welcome-text">Please choose a username</h1>
+  {% if error %}
+    <div class="error-message">{{ error }}</div>
+  {% endif %}
+  <form action="{{ url_for('web.register') }}" method="post">
+    <input type="text" id="username" name="username" placeholder="Username" required pattern="[a-zA-Z0-9]+" title="Username must be alphanumeric" required>
+    <input type="submit" value="Register">
+  </form>
+</div>
+{% endblock %}

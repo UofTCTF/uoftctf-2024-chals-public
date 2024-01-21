@@ -1,0 +1,1 @@
+FLAG = "uoftctf{wH0_w0u1D_h4ve_7houGHt_l0ng_nONceS_CAnt_S4ve_w3ak_KeYS}"

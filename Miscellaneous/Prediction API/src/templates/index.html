@@ -1,0 +1,76 @@
+<html>
+   <body>
+    <pre>
+ _   _ ___________ _____ _____ ___________   _____  _____  _____   ___ 
+| | | |  _  |  ___|_   _/  __ \_   _|  ___| / __  \|  _  |/ __  \ /   |
+| | | | | | | |_    | | | /  \/ | | | |_    `' / /'| |/' |`' / /'/ /| |
+| | | | | | |  _|   | | | |     | | |  _|     / /  |  /| |  / / / /_| |
+| |_| \ \_/ / |     | | | \__/\ | | | |     ./ /___\ |_/ /./ /__\___  |
+ \___/ \___/\_|     \_/  \____/ \_/ \_|     \_____/ \___/ \_____/   |_/                                                                     
+                                                                    
+============================Prediction API============================
+</pre>
+<h3>Model Architecture</h3>
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-cly1{text-align:left;vertical-align:middle}
+    .tg .tg-lboi{border-color:inherit;text-align:left;vertical-align:middle}
+    .tg .tg-g7sd{border-color:inherit;font-weight:bold;text-align:left;vertical-align:middle}
+    </style>
+    <table class="tg">
+    <thead>
+      <tr>
+        <th class="tg-g7sd">Layer Type</th>
+        <th class="tg-g7sd">Dimensions</th>
+        <th class="tg-g7sd">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tg-lboi">Conv2D</td>
+        <td class="tg-lboi">2, 3x3</td>
+        <td class="tg-lboi">ReLU</td>
+      </tr>
+      <tr>
+        <td class="tg-lboi">MaxPooling2D</td>
+        <td class="tg-lboi">2x2</td>
+        <td class="tg-lboi"></td>
+      </tr>
+      <tr>
+        <td class="tg-lboi">Dense</td>
+        <td class="tg-lboi">4</td>
+        <td class="tg-lboi">ReLU</td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">Dropout</td>
+        <td class="tg-cly1"></td>
+        <td class="tg-cly1">Rate = 0.25</td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">Dense</td>
+        <td class="tg-cly1">10</td>
+        <td class="tg-cly1">Softmax</td>
+      </tr>
+    </tbody>
+    </table>
+        <h3>Image File Uploader</h3>
+        <p>Upload a ZIP file containing only png images. The folder must contain only images with the .png extension, size 28x28 pixels. The output is the pre-softmax predictions on a set of classes.</p>
+      <form action = "{{ url_for('photo_uploader') }}" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>
+      <h3>Flag Checker</h3>
+      <p>Do you think you stole the weights of this model? Upload an h5 file in Keras format containing the weights in the provided architecture.</p>
+      <p>Note: You can use pytorch2keras if your weights are in Pytorch format.</p>
+      <form action = "{{ url_for('weights_uploader') }}" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>
+   </body>
+</html>

@@ -1,0 +1,1 @@
+Navigate to https://storage.googleapis.com/out-of-the-bucket and we find another folder secret/. The flag is thus located in https://storage.googleapis.com/out-of-the-bucket/secret/dont_show

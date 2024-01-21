@@ -1,0 +1,5 @@
+The attack for random noise model extraction is presented here: https://arxiv.org/pdf/1912.08987.pdf. Model extraction attacks were first explored in this paper: https://arxiv.org/abs/1609.02943
+
+The provided proof of concept is an implementation of the pseudocode presented -- the solution does not interact with the server as in the challenge, but this can be easily adapted using Zipfile and requests. Additionally, the PoC is in Pytorch, but this can be adapted to Tensorflow easily. Notably, the solution achieves <1% margin of error from the victim model, but the flag checker only required <20% margin of error.
+
+An alternative solution is to notice the 28x28 image requirement and a softmax vector output with 10 classes -- one can infer that the model is likely a CNN trained on MNIST. With some simple inputs, you can verify that the model is indeed trained on MNIST. Then, it is as simple as training a model with identical architecture on the same dataset. Training set leaks can also be performed to obtain more information about the dataset.

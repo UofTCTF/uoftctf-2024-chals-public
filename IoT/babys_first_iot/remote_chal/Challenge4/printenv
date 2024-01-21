@@ -1,0 +1,15 @@
+addmisc=setenv bootargs ${bootargs}console=ttyS0,${baudrate}panic=1
+baudrate=57600
+bootaddr=(0xBC000000 + 0x1e0000)
+bootargs=console=ttyS1,57600 root=/dev/mtdblock8 rts_hconf.hconf_mtd_idx=0 mtdparts=m25p80:256k(boot),128k(pib),1024k(userdata),128k(db),128k(log),128k(dbbackup),128k(logbackup),3072k(kernel),11264k(rootfs)
+bootcmd=bootm 0xbc1e0000
+bootfile=/vmlinux.img
+ethact=r8168#0
+ethaddr=00:00:00:00:00:00
+load=tftp 80500000 ${u-boot}
+loadaddr=0x82000000
+stderr=serial
+stdin=serial
+stdout=serial
+
+Environment size: 533/131068 bytes

@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+    flag_server:
+        build:
+            context: ./flag_server
+        ports: 
+            - "1337:1337"
+        volumes:
+            - type: bind
+              source: ./submissions/src
+              target: /submit/src
+            - type: bind
+              source: ./submissions/binary
+              target: /submit/binary
+        depends_on:
+            - exec_jail
+    exec_jail:
+        build:
+            context: ./exec_jail
+        ports: 
+            - "5000:5000"
+        volumes:
+            - type: bind
+              source: ./submissions/binary
+              target: /srv/submit/binary
+              read_only: true
+        privileged: true
+

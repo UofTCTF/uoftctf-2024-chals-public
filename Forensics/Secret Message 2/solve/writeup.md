@@ -12,4 +12,4 @@ The program gets the last character of the flag wrong, `a` instead of `z`. Howev
 
 # Flag
 
-`uoftctf{pokemon_catching_ezz`
+`uoftctf{pokemon_catching_ezz}`

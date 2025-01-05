@@ -21,9 +21,7 @@ The first thing we might try is a typical SSTI to RCE payload such as the follow
 
 However, we get the error detailing that there were malicious strings detected in the input:
 
-
-
-![](ascii_err.png)
+![](first_err.png)
 
 Additionally, if we try to bypass the filter with a request by making a request such as `/dashboard?a=__getitem__`, we get another error:
 
@@ -31,9 +29,9 @@ Additionally, if we try to bypass the filter with a request by making a request 
 
 This rules out the typical SSTI filter bypass of referencing a blacklisted string with something like `{{request.args.a}}`.
 
-![](first_err.png)
-
 I also added in a little easter egg for my pyjail enjoyers. If you attempt to add any non-ascii characters to the payload, you get an error:
+
+![](ascii_err.png)
 
 Given that the app tells us what parts of our input were blocked, a good step would be to fuzzing characters and properties of the [flask.Request](https://tedboy.github.io/flask/generated/generated/flask.Request.html) object along with some common Jinja SSTI filter bypass payloads to enumerate the entire blacklist. 
 
